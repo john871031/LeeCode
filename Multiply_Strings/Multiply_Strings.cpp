@@ -1,18 +1,23 @@
 class Solution {
 public:
-    string multiply(string num1, string num2) {
+    string multiply(string n1, string n2) {
         vector<int> tmp_ans;
         vector<int> tmp;
         int len1;
         int len2;
-        if(num1=="0" || num2=="0") return "0";
-        if(num1.size()<num2.size()){
-            len1 = num2.size();
-            len2 = num1.size();
-            
+        string num1;
+        string num2;
+        if(n1=="0" || n2=="0") return "0";
+        if(n1.size()<n2.size()){
+            len1 = n2.size();
+            len2 = n1.size();
+            num1 = n2;
+            num2 = n1;
         }else{
-            len1 = num1.size();
-            len2 = num2.size();
+            len1 = n1.size();
+            len2 = n2.size();
+            num1 = n1;
+            num2 = n2;
         }
         int cal;
         int carry;
@@ -20,13 +25,8 @@ public:
             int rec=len2-1-i;
             carry = 0;
             for(int j=len1-1;j>=0;j--){
-                if(num1.size()<num2.size()){
-                    cal = ((num1[i]-'0')*(num2[j]-'0')+carry)%10;
-                    carry = ((num1[i]-'0')*(num2[j]-'0')+carry)/10;
-                }else{
                     cal = ((num1[j]-'0')*(num2[i]-'0')+carry)%10;
                     carry = ((num1[j]-'0')*(num2[i]-'0')+carry)/10;
-                }
                 
 //                 cout << num1[j] << ' '<< num2[i]<<' ';
 //                 cout<<cal<<endl;
